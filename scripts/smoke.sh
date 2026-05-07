@@ -4,11 +4,12 @@ set -euo pipefail
 npm run build
 
 LOG_FILE="${TMPDIR:-/tmp}/ethnomusicology-workbench-smoke.log"
+PORT="${SMOKE_PORT:-$(node -e 'const net = require("node:net"); const server = net.createServer(); server.listen(0, "127.0.0.1", () => { console.log(server.address().port); server.close(); });')}"
 rm -rf .tmp/pages
 mkdir -p .tmp/pages
 cp -R docs .tmp/pages/ethnomusicology-workbench
 
-npx http-server .tmp/pages -a 127.0.0.1 -p 4173 -c-1 --silent >"${LOG_FILE}" 2>&1 &
+npx http-server .tmp/pages -a 127.0.0.1 -p "${PORT}" -c-1 --silent >"${LOG_FILE}" 2>&1 &
 SERVER_PID=$!
 
 cleanup() {
@@ -17,7 +18,7 @@ cleanup() {
 trap cleanup EXIT
 
 for _ in $(seq 1 40); do
-  if curl -fsS "http://127.0.0.1:4173/ethnomusicology-workbench/" >/dev/null; then
+  if curl -fsS "http://127.0.0.1:${PORT}/ethnomusicology-workbench/" >/dev/null; then
     READY=1
     break
   fi
@@ -30,4 +31,4 @@ if [[ "${READY:-0}" != "1" ]]; then
   exit 1
 fi
 
-PLAYWRIGHT_BASE_URL="http://127.0.0.1:4173/ethnomusicology-workbench/" npx playwright test
+PLAYWRIGHT_BASE_URL="http://127.0.0.1:${PORT}/ethnomusicology-workbench/" npx playwright test
