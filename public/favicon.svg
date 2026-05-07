@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ethnomusicology Workbench">
+  <rect width="64" height="64" rx="12" fill="#14332f"/>
+  <path d="M18 44V17h5v27c0 4-3 7-7 7s-7-3-7-7 3-7 7-7c1 0 2 .2 2 .5Z" fill="#f4c95d"/>
+  <path d="M30 38V13h22v7H35v18c0 4-3 7-7 7s-7-3-7-7 3-7 7-7c1 0 2 .2 2 .5Z" fill="#8fd3c7"/>
+  <path d="M42 45c5-5 5-13 0-18M48 51c8-8 8-21 0-29" fill="none" stroke="#fff7e5" stroke-width="4" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+MESSAGE_FILE="${1:?commit message file required}"
+FIRST_LINE="$(head -n 1 "${MESSAGE_FILE}")"
+
+if [[ ! "${FIRST_LINE}" =~ ^(feat|fix|docs|chore|refactor|test|ops|data)(\(.+\))?:\ .+ ]]; then
+  printf "%s\n" "Commit message must use Conventional Commits, for example: feat: add corpus map"
+  exit 1
+fi

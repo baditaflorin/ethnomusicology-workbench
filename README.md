@@ -14,6 +14,8 @@ Support the project: https://www.paypal.com/paypalme/florinbadita
 
 Ethnomusicology Workbench is a local-first research platform for field recordings. It imports local audio, extracts pitch and acoustic features in the browser, clusters a corpus by similarity, supports timeline annotations, runs reproducible statistical summaries, and exports ELAN, Praat TextGrid, CSV/JSON, MusicXML, and LilyPond-compatible score files.
 
+![Ethnomusicology Workbench demo](docs/demo.png)
+
 ## Quickstart
 
 ```bash
@@ -35,6 +37,16 @@ ADRs: docs/adr/
 Deployment guide: docs/deploy.md
 
 Privacy notes: docs/privacy.md
+
+```mermaid
+flowchart LR
+  A["Researcher browser"] --> B["GitHub Pages static app"]
+  B --> C["Web Audio analysis"]
+  B --> D["IndexedDB local project"]
+  B --> E["Exports: EAF, TextGrid, MusicXML, LilyPond, CSV, JSON"]
+  B --> F["Lazy engines: Cytoscape.js, DuckDB-WASM, WebR, Whisper adapter"]
+  B --> G["Public GitHub commit metadata"]
+```
 
 ## Local checks
 
